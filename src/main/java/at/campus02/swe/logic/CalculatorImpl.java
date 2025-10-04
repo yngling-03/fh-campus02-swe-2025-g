@@ -17,6 +17,8 @@ public class CalculatorImpl implements Calculator {
         double a = pop();
 
         switch (op) {
+            case mod:
+                return a % b;
             case add:
                 return a + b;
             case sub:
