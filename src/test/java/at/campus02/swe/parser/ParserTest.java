@@ -42,7 +42,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testParserTest02Xml() throws Exception {
+    public void testParserTestSinXml() throws Exception {
 
         Calculator cal = mock(Calculator.class);
 
@@ -56,7 +56,21 @@ public class ParserTest {
     }
 
     @Test
-    public void testParserTest04Xml() throws Exception {
+    public void testParserTestCosXml() throws Exception {
+
+        Calculator cal = mock(Calculator.class);
+
+        Parser parser = new Parser(cal);
+        parser.parse(new File("src/test/resources/test03.xml"));
+
+        verify(cal).push(50.0);
+        verify(cal).perform(Operation.cos);
+
+        verifyNoMoreInteractions(cal);
+    }
+
+    @Test
+    public void testParserTestModXml() throws Exception {
 
         Calculator cal = mock(Calculator.class);
 

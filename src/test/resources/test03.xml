@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <calculation>
-    <push value="1" />
-    <push value="2" />
-    <operation value="+" />
-    <push value="Result" />
-    <push value="2" />
-    <operation value="*" />
+    <push value="100" />
+    <operation value="cos" />
 </calculation>
