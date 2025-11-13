@@ -15,9 +15,11 @@ public class CalculatorImpl implements Calculator {
 
         switch (op) {
             case sin:
-                return 0;
+                double inputSin = pop();
+                return Math.sin(inputSin);
             case cos:
-                return 0;
+                double inputCos = pop();
+                return Math.cos(inputCos);
             default:
                 double b = pop();
                 double a = pop();
