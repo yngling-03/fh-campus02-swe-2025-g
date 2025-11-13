@@ -64,11 +64,26 @@ public class CalculatorTest {
 
     }
 
+    @Test
+    public void testSinOperation() throws Exception {
 
+        Calculator calc = new CalculatorImpl();
+        calc.push(90);
+        double result = calc.perform(Operation.sin);
 
+        assertEquals(0.8939966636005579, result, 0);
+    }
 
+    @Test
+    public void testCosOperation() throws Exception {
 
-    //
+        Calculator calc = new CalculatorImpl();
+        calc.push(90);
+        double result = calc.perform(Operation.cos);
+
+        assertEquals(-0.4480736161291701, result, 0);
+    }
+
     @Test(expected = CalculatorException.class)
     public void testPopOnEmptyStack() throws Exception {
 

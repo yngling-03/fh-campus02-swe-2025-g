@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <calculation>
-    <push value="1" />
-    <push value="2" />
-    <push value="3" />
+    <push value="50" />
     <pop/>
-    <operation value="+" />
+    <operation value="sin" />
 </calculation>
