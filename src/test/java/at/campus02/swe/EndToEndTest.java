@@ -27,7 +27,8 @@ public class EndToEndTest {
         assertEquals(2.0, result, 1e-9);
     }
 
-    private double executeCalculation(String resourceName) throws CalculatorException, FileNotFoundException, XMLStreamException, URISyntaxException {
+    private double executeCalculation(String resourceName) throws
+            CalculatorException, FileNotFoundException, XMLStreamException, URISyntaxException {
         Parser parser = new Parser(new CalculatorImpl());
         File input = resolveResource(resourceName);
         return parser.parse(input);
