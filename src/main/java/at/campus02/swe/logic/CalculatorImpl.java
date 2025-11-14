@@ -16,6 +16,9 @@ public class CalculatorImpl implements Calculator {
         switch (op) {
             case dotproduct:
                 int vectorSize = (int) pop();
+                if (vectorSize == 0) {
+                    throw new CalculatorException("Not Null");
+                }
                 double[] bArray = new double[vectorSize];
                 double[] aArray = new double[vectorSize];
                 double result = 0;

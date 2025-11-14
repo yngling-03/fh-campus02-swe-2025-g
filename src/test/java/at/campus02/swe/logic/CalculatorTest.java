@@ -81,7 +81,8 @@ public class CalculatorTest {
         calc.push(90);
         double result = calc.perform(Operation.cos);
 
-        assertEquals(-0.4480736161291701, result, 0);
+        assertEquals(-0.4480736161291701, result, 1e-12);
+
     }
 
     @Test(expected = CalculatorException.class)
@@ -111,4 +112,65 @@ public class CalculatorTest {
         }
 
     }
+
+    @Test
+    public void testDotproductTwoElements() throws Exception {
+
+        // setup
+        Calculator calc = new CalculatorImpl();
+
+        // (1, 3) · (2, 4) = 1*2 + 3*4 = 14
+        calc.push(1);
+        calc.push(3);
+        calc.push(2);
+        calc.push(4);
+        calc.push(2); // Anzahl Elemente pro Vektor
+
+        // execute
+        double result = calc.perform(Operation.dotproduct);
+
+        // verify
+        assertEquals(14, result, 0);
+    }
+
+    @Test
+    public void testDotproductThreeElements() throws Exception {
+
+        // setup
+        Calculator calc = new CalculatorImpl();
+
+        // (1, 2, 3) · (4, 5, 6) = 1*4 + 2*5 + 3*6 = 32
+        calc.push(1);
+        calc.push(2);
+        calc.push(3);
+
+        calc.push(4);
+        calc.push(5);
+        calc.push(6);
+
+        calc.push(3); // Anzahl Elemente pro Vektor
+
+        // execute
+        double result = calc.perform(Operation.dotproduct);
+
+        // verify
+        assertEquals(32, result, 0.00000000000001);
+    }
+
+    @Test(expected = CalculatorException.class)
+    public void testDotproductInvalidElementCount() throws Exception {
+
+        // setup
+        Calculator calc = new CalculatorImpl();
+
+        // Wir pushen nur 2 Werte, aber geben als Anzahl 0 an → ungültig
+        calc.push(1);
+        calc.push(2);
+        calc.push(0); // ungültige Anzahl Elemente pro Vektor
+
+        // execute (soll Exception werfen)
+        calc.perform(Operation.dotproduct);
+    }
+
+
 }

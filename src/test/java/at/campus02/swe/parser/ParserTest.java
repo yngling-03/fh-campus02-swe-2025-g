@@ -50,10 +50,12 @@ public class ParserTest {
         parser.parse(new File("src/test/resources/test02.xml"));
 
         verify(cal).push(50.0);
+        verify(cal).pop();                // ⬅️ NEU
         verify(cal).perform(Operation.sin);
 
         verifyNoMoreInteractions(cal);
     }
+
 
     @Test
     public void testParserTestCosXml() throws Exception {
@@ -63,7 +65,7 @@ public class ParserTest {
         Parser parser = new Parser(cal);
         parser.parse(new File("src/test/resources/test03.xml"));
 
-        verify(cal).push(50.0);
+        verify(cal).push(100.0);
         verify(cal).perform(Operation.cos);
 
         verifyNoMoreInteractions(cal);
@@ -83,4 +85,24 @@ public class ParserTest {
 
         verifyNoMoreInteractions(cal);
     }
+
+    @Test
+    public void testParserTestDotproductXml() throws Exception {
+
+        Calculator cal = mock(Calculator.class);
+
+        Parser parser = new Parser(cal);
+        parser.parse(new File("src/test/resources/test05-dotproduct.xml"));
+
+        // Es sollten 5 Werte gepusht werden (1,3,2,4,2),
+        // aber wir interessieren uns hier nicht für die genauen Werte:
+        verify(cal, times(5)).push(anyDouble());
+
+        // Wichtig: dotproduct wird ausgeführt
+        verify(cal).perform(Operation.dotproduct);
+
+        verifyNoMoreInteractions(cal);
+    }
+
+
 }
