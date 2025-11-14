@@ -8,12 +8,31 @@ import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
-    private Stack<Double> stack_ = new Stack<Double>();
+    private Stack<Double> stack_ = new Stack<>();
 
     @Override
     public double perform(Operation op) throws CalculatorException {
 
         switch (op) {
+            case dotproduct:
+                int vectorSize = (int) pop();
+                if (vectorSize == 0) {
+                    throw new CalculatorException("Not Null");
+                }
+                double[] bArray = new double[vectorSize];
+                double[] aArray = new double[vectorSize];
+                double result = 0;
+                for (int i = vectorSize - 1; i >= 0; i--) {
+                    bArray[i] = pop();
+                }
+                for (int i = vectorSize - 1; i >= 0; i--) {
+                    aArray[i] = pop();
+                }
+                for (int i = 0; i < vectorSize; i++) {
+                    result += bArray[i] * aArray[i];
+                }
+                return result;
+
             case sin:
                 double inputSin = pop();
                 return Math.sin(inputSin);
